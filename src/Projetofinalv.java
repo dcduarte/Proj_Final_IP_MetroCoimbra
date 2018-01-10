@@ -28,13 +28,15 @@ public class Projetofinalv {
 	public static void main(String[] args) throws Exception {
 
 
-
+//Inicialização dos dados a partir do ficheiro
 		dadoscarruagem=lerFicheirocarruagem();
 		dadosautomotora=lerFicheiroautomotora();
 		dadosestacoes=lerFicheiroestacoes();
 		dadoslinhas=lerFicheirolinhas();
 		dadosestaleirocarr=lerFicheiroestaleirocarr();
 		dadosestaleiroauto=lerFicheiroestaleiroauto();
+		dadoscomposicoes=lerFicheirocomposicoes();
+				
 		
 		for (int i=0; i<ficheiros.length;i++) {
 			ficheiro = new File(ficheiros[i]);
@@ -254,22 +256,20 @@ public class Projetofinalv {
 
 		dadoscomposicoes = new String[numLinhas][10];
 
+
 		for(int i=0; sc1.hasNextLine(); i++)
 		{
 			
 			String line = sc1.nextLine();
+			String tempArray[]= line.split(";") ;
+		for(int j=0; j< dadoscomposicoes.length;j++) {	
 			
-			dadoscomposicoes[i][0] = String.valueOf((line.split(";")[0]));
-			dadoscomposicoes[i][1] = String.valueOf((line.split(";")[1]));
-			dadoscomposicoes[i][2] = String.valueOf((line.split(";")[2]));
-			dadoscomposicoes[i][3] = String.valueOf((line.split(";")[3]));
-			dadoscomposicoes[i][4] = String.valueOf((line.split(";")[4]));
-			dadoscomposicoes[i][5] = String.valueOf((line.split(";")[5]));
-			dadoscomposicoes[i][6] = String.valueOf((line.split(";")[6]));
-			dadoscomposicoes[i][7] = String.valueOf((line.split(";")[7]));
-			dadoscomposicoes[i][8] = String.valueOf((line.split(";")[8]));
-			dadoscomposicoes[i][9] = String.valueOf((line.split(";")[9]));
-
+			if(j<tempArray.length)
+				dadoscomposicoes[i][j] = String.valueOf((line.split(";")[0]));
+			else
+				dadoscomposicoes[i][j] = "";
+			
+		}
 		}
 		sc1.close();
 	} catch (FileNotFoundException e) {
