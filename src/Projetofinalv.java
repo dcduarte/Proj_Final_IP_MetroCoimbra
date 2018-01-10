@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 public class Projetofinalv {
 	static Scanner teclado = new Scanner(System.in);
-	static final String[] ficheiros = {"automotora.txt", "carruagens.txt", "linhas.txt", "estacoes.txt",  "composicoes.txt", "estaleirocarr.txt","estaleiroauto.txt"};
+	static final String[] ficheiros = {"automotora.txt", "carruagens.txt", "linhas.txt", "composicoes.txt", "estaleirocarr.txt","estaleiroauto.txt"};
 	static File ficheiro;
 	static String dadosautomotora[][]=new String[0][2];
 	static String dadoscarruagem[][]= new String[0][2];	
@@ -220,7 +220,8 @@ public class Projetofinalv {
 				String line = sc1.nextLine();
 				dadoslinhas[i][0] = String.valueOf((line.split(";")[0]));
 				dadoslinhas[i][1] = String.valueOf((line.split(";")[1]));
-				dadoslinhas[i][2] = String.valueOf((line.split(";")[2]));
+				dadoslinhas[i][2] = String.valueOf((line.split("")[2]));
+
 			}
 			sc1.close();
 		} catch (FileNotFoundException e) {
@@ -693,6 +694,13 @@ public class Projetofinalv {
 		}
 	}
 		private static void listartodascomp() {
+			int sizeofcomposicoes =dadoscomposicoes.length;
+
+
+			for(int i=0; i<sizeofcomposicoes; i++){
+
+				System.out.println(dadoscomposicoes[i][i]);
+			}
 
 		}
 
@@ -757,24 +765,24 @@ public class Projetofinalv {
 			int numero=1;
 			do{
 
-				String tmpArray[][] = new String[dadoscarruagem.length+1][2];
+				String arraytemp[][] = new String[dadoscarruagem.length+1][2];
 
 				for(int i=0; i<dadoscarruagem.length;i++) 
 				{
-					tmpArray[i][0]=dadoscarruagem[i][0];
-					tmpArray[i][1]=dadoscarruagem[i][1];
+					arraytemp[i][0]=dadoscarruagem[i][0];
+					arraytemp[i][1]=dadoscarruagem[i][1];
 				}
 
 				System.out.println("Insira Carruagem");
 
-				tmpArray[tmpArray.length-1][0]= teclado.next();
+				arraytemp[arraytemp.length-1][0]= teclado.next();
 
 				System.out.println("Insira o nÃºmero de passageiros");
 
-				tmpArray[tmpArray.length-1][1]= teclado.next();
+				arraytemp[arraytemp.length-1][1]= teclado.next();
 
-				dadoscarruagem=tmpArray;
-				tmpArray=dadosestaleirocarr;
+				dadoscarruagem=arraytemp;
+				arraytemp=dadosestaleirocarr;
 				
 				
 				
@@ -801,7 +809,7 @@ public class Projetofinalv {
 
 				String tmpArray[][] = new String[dadosautomotora.length+1][2];
 
-
+				
 				for(int i=0; i<dadosautomotora.length;i++) 
 				{
 					tmpArray[i][0]=dadosautomotora[i][0];
@@ -1263,74 +1271,150 @@ public class Projetofinalv {
 			
 		}
 		private static void associarautocarru() {
-			//@TODO Fazer
+			
+			String arraytemp[][] = new String[dadoscomposicoes.length+1][10];
+			for(int i=0; i<dadoscomposicoes.length; i++) 
+			{
+				System.out.println(dadoscomposicoes[i][0] +":"+ dadoscomposicoes[i][1]);
+			}
+			
+			System.out.println("Insira a Composição");
+			arraytemp[arraytemp.length-1][1]= teclado.next();
+			for(int i=0; i<dadoscomposicoes.length;i++) 
+			{
+				if(dadoscomposicoes[i][0].equalsIgnoreCase(arraytemp[arraytemp.length-1][0])) 
+				{
+					arraytemp[arraytemp.length-1][0]= dadoscomposicoes[i][0];
+					
+				}
+				else {
+					System.out.println("Nao existe composicoa");
+				}
+			}
+			for(int i=0; i<dadosestaleiroauto.length; i++) 
+			{
+				System.out.println(dadosestaleiroauto[i][0] +":"+ dadosestaleiroauto[i][1]);
+			}
+			
+			System.out.println("Insira a Automotora");
+
+			arraytemp[arraytemp.length-1][2]= teclado.next();
+			for(int i=0; i<dadosestaleiroauto[i].length;i++) 
+			{
+				if(dadosestaleiroauto[i][0].equalsIgnoreCase(arraytemp[arraytemp.length-1][1])) 
+				{
+					arraytemp[arraytemp.length-1][2]= dadosestaleiroauto[i][0];
+					
+				}
+				else {
+					System.out.println("Nao existe automotora");
+				}
+			}
+			int numero=1;
+			do {
+			for(int j=0; j<dadosestaleirocarr.length; j++) 
+			{
+				System.out.println(dadosestaleirocarr[j][0] +":"+ dadosestaleirocarr[j][1]);
+			}
+			
+			System.out.println("Insira a carruagem");
+
+			int indice = encontraIndiceVazio(arraytemp.length-1);
+			
+			
+			arraytemp[arraytemp.length-1][indice]= teclado.next();
+			
+	
+			
+			for(int i=0; i<dadosestaleirocarr[i].length;i++) 
+			{
+				if(dadosestaleirocarr[i][0].equalsIgnoreCase(arraytemp[arraytemp.length-1][1])) 
+				{
+					arraytemp[arraytemp.length-1][2]= dadosestaleirocarr[i][0];
+					
+				}
+				else {
+					System.out.println("Nao existe carruagem");
+				}
+			}
+			do{
+				System.out.println("Prima 1 para inserir uma nova carruagem ou 0 para voltar.");
+				numero=teclado.nextInt();
+				if(numero!=0&&numero!=1){
+					System.out.println("Apenas pode inserir 0 ou 1");
+					numero=2;
+				}
+
+			}while(numero==2);
+			}while(numero!=0);
+			dadoscomposicoes=arraytemp;
 			
 		}
-		private static void criarcompmetro() {
-			//@TODO Fazer
-			int numero=1;
+		
+		private static String[][] reduzirArray(String id, int columns)
+		{
 			
-			do{
+			if(dadosestaleirocarr.length == 0)
+				return new String [1][columns];
+			
+			String[][] temp = new String[dadosestaleirocarr.length-1][columns];
+			
+			for(int i=0; i<dadosestaleirocarr.length; i++) {
+				for(int j=0; j< columns; j++) {
+					if(dadosestaleirocarr[i][0].equalsIgnoreCase(id)){
+						continue;
+					}
+					temp[i][j] = dadosestaleirocarr[i][j];
+					
+				}
+				
+			}
+			return temp;
+		}
+		private static int encontraIndiceVazio(int linha) {
+			
+			for(int i=0; i < dadoscomposicoes[0].length;i++)
+			{
+				if(dadoscomposicoes[linha][i] == "")
+					return i;
+			}
+			
+			return -1;
+		}
 
-				String tmpArray[][] = new String[dadoscomposicoes.length+1][10];
+		private static void criarcompmetro() {
+			
+
+				String arraytemp[][] = new String[dadoscomposicoes.length+1][10];
 
 				for(int i=0; i < dadoscomposicoes.length ;i++) 
 				{
-					tmpArray[i] = dadoscomposicoes[i];
+					arraytemp[i] = dadoscomposicoes[i];
 				
 				}
 
-				System.out.println("Insira o ID da ComposiÃ§Ã£o");
+				System.out.println("Insira o ID da Composição");
 
-				tmpArray[tmpArray.length-1][0]= teclado.next();
-
+				arraytemp[arraytemp.length-1][0]= teclado.next();
+				
+				System.out.println("\n Menu Estado");
+				System.out.println("1-Em circulação");
+				System.out.println("2-Revisão");
+				System.out.println("3-Reparação");
+				System.out.println("4-Paragem de fim-de-semana");
+				arraytemp[arraytemp.length-1][1]= teclado.next();
 				
 				
-				for(int i=0; i<dadosautomotora.length; i++) 
-				{
-					System.out.println(dadosautomotora[i][0] +":"+ dadosautomotora[i][1]);
-				}
-				System.out.println("Insira a Automotora");
-
-				tmpArray[tmpArray.length-1][1]= teclado.next();
-				
-				//verifica se existe
-				for(int i=0; i<dadosautomotora[i].length;i++) 
-				{
-					if(dadosautomotora[i][0].equalsIgnoreCase(tmpArray[tmpArray.length-1][1])) 
-					{
-						tmpArray[tmpArray.length-1][2]= dadosautomotora[i][0];
-						
-					}
-				}
+				dadoscomposicoes=arraytemp;
 				
 			
 
-				dadoscomposicoes=tmpArray;
-
-				do{
-
-					
-					System.out.println("Introduza o id dacaruagem que pretende adicionar...");
-
-					String tmpArray2[]= tmpArray[tmpArray.length-1];
-
-					tmpArray2[tmpArray.length]= teclado.next();
-
-					System.out.println("Prima 1 para inserir uma nova carruagem ou 0 para voltar.");
-					
-					numero=teclado.nextInt();
-					
-					if(numero!=0&&numero!=1){
-						System.out.println("Apenas pode inserir 0 ou 1");
-						numero=2;
-					}
-
-				}while(numero==2);
-
-			}while(numero!=0);
+				
 			
+		
 		}
+		
+
 		public static void menu6() throws Exception {
 			int escolha;
 			System.out.println("*************************************************");
@@ -1415,20 +1499,99 @@ public class Projetofinalv {
 		}
 
 		private static void remoestacaolinha() {
-//@TODO Fazer
+			
+			String linha;
+			String estacao;
+			String arraytemp[][]= new String[dadoslinhas.length-1][3];
+			
+			
+			
+			System.out.println("ID	 | Cor da Linha | Estação");
+			for (int i = 0; i<dadoslinhas.length; i++){
+				if(dadoslinhas[i][0].compareToIgnoreCase("0")!=0){
+					System.out.println(dadoslinhas[i][0]+"|"+dadoslinhas[i][1]+"|"+dadoslinhas[i][2]);
+				}
+			}
+			int i=0;
+			System.out.println("Insira o ID da linha");
+			linha=teclado.next();
+			System.out.println("Qual a estação que pretende remover");
+				estacao= teclado.next();
+				
+				for(int j=0;j<dadoslinhas.length;j++){
+				if(dadoslinhas[j][2].equalsIgnoreCase(estacao)){
+					dadoslinhas[j][0]=linha;
+					arraytemp[i][1]=dadoslinhas[j][1];
+				}
+				
+			}
+	
 		}
+
+
+
 		private static void alteestacaolinha() {
-			//@TODO Fazer
+			String linha;
+			String alteracao;
+			
+				
+				System.out.println("ID     | Cor da Linha | Estação");
+				for (int i = 0; i < dadoslinhas.length; i++){
+					if(dadoslinhas[i][0].compareToIgnoreCase("0")!=0)
+						System.out.println(dadoslinhas[i][0]+ "  | " + dadoslinhas[i][1]+ "  | " + dadoslinhas[i][2]);
+				}	
+				
+				System.out.println("Insira o ID da linha que pretende alterar");
+				linha=teclado.next();
+
+				for(int h=0; h<dadoslinhas.length; h++){
+
+					if(linha.equals(dadoslinhas[h][0])){
+
+						System.out.println("Insira a nova estação");
+						alteracao=teclado.next();
+
+						for(int j=0;j<dadoslinhas.length;j++){
+
+							if(dadoslinhas[j][0].equalsIgnoreCase(linha)){
+
+								dadoslinhas[j][2]=alteracao;
+
+							}
+
+						}
+					}
+				}
+			
 		}
 		private static void assoestacaolinha() {
-			//@TODO Fazer
-			String tmp[][][]= new String[0][4][0];
+			  System.out.println("ID     | Cor da Linha");
+		        for (int i = 0; i<dadoslinhas.length; i++){
+		            if(dadoslinhas[i][0].compareToIgnoreCase("0")!=0){
+		                System.out.println(dadoslinhas[i][0]+ "  | " + dadoslinhas[i][1]);
+		            }
+		        }
+		        System.out.println("\nEstações");
+		        for(int i=0; i<dadosestacoes.length; i++)
+		        {
+		            System.out.println(dadosestacoes[i][0]);
+		        }
 
-			for(int i=0; i<dadoslinhas.length; i++)
+		        System.out.println("Qual a estação que prentende adicionar");
+		        String estacao= teclado.next();
 
-				for(int j=0; j<dadoslinhas[i].length; j++)
+		        System.out.println("Qual é a linha a que pretende adicionar");
+		        String linha = teclado.next();
 
-					dadoslinhas[i][j]= String.valueOf(tmp[i][j]);
+		        for (int i=0; i<dadoslinhas.length; i++)
+		        {
+		            if(dadoslinhas[i][0].equalsIgnoreCase(linha))
+		            {
+		                dadoslinhas[i][2]= estacao;
+
+		            }
+		        }
+
 
 
 		}
@@ -1461,13 +1624,12 @@ public class Projetofinalv {
 		private static void altelinha() {
 			String linha;
 			String alteracao;
-			String alteracao2;
 			
 				
 				System.out.println("ID     | Cor da Linha | Paragens da Linha");
 				for (int i = 0; i < dadoslinhas.length; i++){
 					if(dadoslinhas[i][0].compareToIgnoreCase("0")!=0)
-						System.out.println(dadoslinhas[i][0]+ "  | " + dadoslinhas[i][1]+ "  | " + dadoslinhas[i][2]);
+						System.out.println(dadoslinhas[i][0]+ "  | " + dadoslinhas[i][1]);
 				}	
 				System.out.println("Insira o ID da linha que pretende alterar");
 				linha=teclado.next();
@@ -1479,15 +1641,11 @@ public class Projetofinalv {
 						System.out.println("Insira a nova cor da linha");
 						alteracao=teclado.next();
 
-						System.out.println("Insira as novas paragens");
-						alteracao2=teclado.next();
-
 						for(int j=0;j<dadoslinhas.length;j++){
 
 							if(dadoslinhas[j][0].equalsIgnoreCase(linha)){
 
 								dadoslinhas[j][1]=alteracao;
-								dadoslinhas[j][2]=alteracao2;
 
 							}
 
@@ -1506,7 +1664,6 @@ public class Projetofinalv {
 				{
 					tmpArray[i][0]=dadoslinhas[i][0];
 					tmpArray[i][1]=dadoslinhas[i][1];
-					tmpArray[i][1]=dadoslinhas[i][3];
 				}
 
 				System.out.println("Insira o ID da linha");
@@ -1518,11 +1675,6 @@ public class Projetofinalv {
 
 
 				tmpArray[tmpArray.length-1][1]= teclado.next();
-				
-				System.out.println("Insira as paragens da linha");
-
-
-				tmpArray[tmpArray.length-1][2]= teclado.next();
 
 				dadoslinhas=tmpArray;
 
@@ -1607,7 +1759,6 @@ public class Projetofinalv {
 				{
 					tmpArray[i][0]=dadosestacoes[i][0];
 					tmpArray[i][1]=dadosestacoes[i][1];
-					tmpArray[i][1]=dadosestacoes[i][3];
 				}
 
 				System.out.println("Insira o ID da EstaÃ§Ã£o");
@@ -1620,10 +1771,6 @@ public class Projetofinalv {
 
 				tmpArray[tmpArray.length-1][1]= teclado.next();
 				
-				System.out.println("Insira a localizaÃ§Ã£o da EstaÃ§Ã£o");
-
-
-				tmpArray[tmpArray.length-1][2]= teclado.next();
 
 				dadosestacoes=tmpArray;
 
