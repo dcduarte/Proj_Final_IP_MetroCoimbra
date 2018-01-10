@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-public class Projeto_final1 {
+public class Projetofinalv {
 	static Scanner teclado = new Scanner(System.in);
 	static final String[] ficheiros = {"automotora.txt", "carruagens.txt", "linhas.txt", "estacoes.txt",  "composicoes.txt", "estaleirocarr.txt","estaleiroauto.txt"};
 	static File ficheiro;
