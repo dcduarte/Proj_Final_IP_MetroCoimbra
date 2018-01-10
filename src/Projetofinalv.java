@@ -1,8 +1,6 @@
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 public class Projetofinalv {
@@ -23,8 +21,7 @@ public class Projetofinalv {
 	static String NomeFicheiro_composicoes= "composicoes.txt";
 	static String NomeFicheiro_estaleirocarr= "estaleirocarr.txt";
 	static String NomeFicheiro_estaleiroauto= "estaleiroauto.txt";
-	//@TODO Guardar do array para o ficheir quando terminar progroma apagar o que esta no ficheiro e passar o que esta no array
-
+	
 	public static void main(String[] args) throws Exception {
 
 
@@ -69,7 +66,7 @@ public class Projetofinalv {
 				ficheiro.createNewFile(); 
 			}
 		}catch(IOException e) {
-			System.out.println("Ocorreu um erro durante a criaÃ§Ã£o do ficheiro! [DEBUG: "+e.getMessage()+"]");
+			System.out.println("Ocorreu um erro durante a criação do ficheiro! [DEBUG: "+e.getMessage()+"]");
 			System.out.println("Tente de novo!");
 			lerFicheirocarruagem();
 		}
@@ -112,7 +109,7 @@ public class Projetofinalv {
 				ficheiro.createNewFile(); 
 			}
 		}catch(IOException e) {
-			System.out.println("Ocorreu um erro durante a criaÃ§Ã£o do ficheiro! [DEBUG: "+e.getMessage()+"]");
+			System.out.println("Ocorreu um erro durante a criação do ficheiro! [DEBUG: "+e.getMessage()+"]");
 			System.out.println("Tente de novo!");
 			lerFicheiroautomotora();
 		}
@@ -154,7 +151,7 @@ public class Projetofinalv {
 				ficheiro.createNewFile(); 
 			}
 		}catch(IOException e) {
-			System.out.println("Ocorreu um erro durante a criaÃ§Ã£o do ficheiro! [DEBUG: "+e.getMessage()+"]");
+			System.out.println("Ocorreu um erro durante a criação do ficheiro! [DEBUG: "+e.getMessage()+"]");
 			System.out.println("Tente de novo!");
 			lerFicheiroestacoes();
 		}
@@ -196,7 +193,7 @@ public class Projetofinalv {
 				ficheiro.createNewFile(); 
 			}
 		}catch(IOException e) {
-			System.out.println("Ocorreu um erro durante a criaÃ§Ã£o do ficheiro! [DEBUG: "+e.getMessage()+"]");
+			System.out.println("Ocorreu um erro durante a criação do ficheiro! [DEBUG: "+e.getMessage()+"]");
 			System.out.println("Tente de novo!");
 			lerFicheirolinhas();
 		}
@@ -238,7 +235,7 @@ public class Projetofinalv {
 			ficheiro.createNewFile(); 
 		}
 	}catch(IOException e) {
-		System.out.println("Ocorreu um erro durante a criaÃ§Ã£o do ficheiro! [DEBUG: "+e.getMessage()+"]");
+		System.out.println("Ocorreu um erro durante a criação do ficheiro! [DEBUG: "+e.getMessage()+"]");
 		System.out.println("Tente de novo!");
 		lerFicheirocomposicoes();
 	}
@@ -288,7 +285,7 @@ public class Projetofinalv {
 				ficheiro.createNewFile(); 
 			}
 		}catch(IOException e) {
-			System.out.println("Ocorreu um erro durante a criaÃ§Ã£o do ficheiro! [DEBUG: "+e.getMessage()+"]");
+			System.out.println("Ocorreu um erro durante a criação do ficheiro! [DEBUG: "+e.getMessage()+"]");
 			System.out.println("Tente de novo!");
 			lerFicheiroestaleirocarr();
 		}
@@ -330,7 +327,7 @@ public class Projetofinalv {
 				ficheiro.createNewFile(); 
 			}
 		}catch(IOException e) {
-			System.out.println("Ocorreu um erro durante a criaÃ§Ã£o do ficheiro! [DEBUG: "+e.getMessage()+"]");
+			System.out.println("Ocorreu um erro durante a criação do ficheiro! [DEBUG: "+e.getMessage()+"]");
 			System.out.println("Tente de novo!");
 			lerFicheiroestaleiroauto();
 		}
@@ -374,7 +371,7 @@ public class Projetofinalv {
 				System.out.println("Erro ao tentar criar o ficheiro!");
 			}
 		} catch(IOException e) {
-			System.out.println("Erro na aplicaÃ§Ã£o!");
+			System.out.println("Erro na aplicação!");
 			e.printStackTrace();
 		}
 	}
@@ -387,10 +384,10 @@ public class Projetofinalv {
 		System.out.println("1. Listar Empresa");
 		System.out.println("2. Gerir Automotora/Carruagem");
 		System.out.println("3. Gerir Estaleiro");
-		System.out.println("4. Gerir ComposiÃ§Ã£o Do Metro");
-		System.out.println("5. Gerir EstaÃ§Ã£o/Linha");
+		System.out.println("4. Gerir Composição Do Metro");
+		System.out.println("5. Gerir Estação/Linha");
 		System.out.println("6. Gerir Movimento");
-		System.out.println("7. Obter EstatÃ­stica");
+		System.out.println("7. Obter Estatística");
 		System.out.println("8. Sair Do Programa");
 		System.out.println("*************************************************\n");
 		escolha = teclado.nextInt();
@@ -432,7 +429,7 @@ public class Projetofinalv {
 		System.out.println("*************************************************");
 		System.out.println("\t\tMenu lista empresa");
 		System.out.println("*************************************************");
-		System.out.println("1. Listar todas as composiÃ§Ãµes do metro");
+		System.out.println("1. Listar todas as composiçõees do metro");
 		System.out.println("2. Listar todas as automotoras/carruagens");
 		System.out.println("3. Listar automotoras/carruagens livres");
 		System.out.println("4. Listar automotoras/carruagens ocupadas");
@@ -517,7 +514,7 @@ public class Projetofinalv {
 			if (indiceElemento == null) {
 				System.out.println("Valor nÃ£o encontrado...");
 			} else {
-				System.out.println("O valor "+valorProcurar+" foi encontrado na posiÃ§Ã£o "+indiceElemento);
+				System.out.println("O valor "+valorProcurar+" foi encontrado na posição "+indiceElemento);
 			}
 		} catch(Exception e) {
 			System.out.println("Ocorreu um erro na leitura dos dados... [DEBUG: "+e.getMessage()+"]");
@@ -567,9 +564,9 @@ public class Projetofinalv {
 			}
 
 			if (indiceElemento == null) {
-				System.out.println("Valor nÃ£o encontrado...");
+				System.out.println("Valor não encontrado...");
 			} else {
-				System.out.println("O valor "+valorProcurar+" foi encontrado na posiÃ§Ã£o "+indiceElemento);
+				System.out.println("O valor "+valorProcurar+" foi encontrado na posição "+indiceElemento);
 			}
 		} catch(Exception e) {
 			System.out.println("Ocorreu um erro na leitura dos dados... [DEBUG: "+e.getMessage()+"]");
@@ -777,7 +774,7 @@ public class Projetofinalv {
 
 				arraytemp[arraytemp.length-1][0]= teclado.next();
 
-				System.out.println("Insira o nÃºmero de passageiros");
+				System.out.println("Insira o número de passageiros");
 
 				arraytemp[arraytemp.length-1][1]= teclado.next();
 
@@ -807,28 +804,28 @@ public class Projetofinalv {
 			int numero=1;
 			do{
 
-				String tmpArray[][] = new String[dadosautomotora.length+1][2];
+				String arraytemp[][] = new String[dadosautomotora.length+1][2];
 
 				
 				for(int i=0; i<dadosautomotora.length;i++) 
 				{
-					tmpArray[i][0]=dadosautomotora[i][0];
-					tmpArray[i][1]=dadosautomotora[i][1];
+					arraytemp[i][0]=dadosautomotora[i][0];
+					arraytemp[i][1]=dadosautomotora[i][1];
 				}
 
 				System.out.println("Insira a Automotora");
 
 
-				tmpArray[tmpArray.length-1][0]= teclado.next();
+				arraytemp[arraytemp.length-1][0]= teclado.next();
 
 				System.out.println("Insira o tipo de Automotora");
 
 
-				tmpArray[tmpArray.length-1][1]= teclado.next();
+				arraytemp[arraytemp.length-1][1]= teclado.next();
 
 
-				dadosautomotora=tmpArray;
-				tmpArray=dadosestaleiroauto;
+				dadosautomotora=arraytemp;
+				arraytemp=dadosestaleiroauto;
 
 				do{
 					System.out.println("Prima 1 para inserir uma nova carruagem ou 0 para voltar.");
@@ -875,12 +872,12 @@ public class Projetofinalv {
 		private static void removercarruagem() {
 
 			String carruagem;
-			String tmpArray[][]= new String[dadoscarruagem.length-1][2];
+			String arraytemp[][]= new String[dadoscarruagem.length-1][2];
 
 
 
 			
-			System.out.println("ID	 | NÃºmero de Passageiros");
+			System.out.println("ID	 | Número de Passageiros");
 			for (int i = 0; i<dadoscarruagem.length; i++){
 				if(dadoscarruagem[i][0].compareToIgnoreCase("0")!=0){
 					System.out.println(dadoscarruagem[i][0]+ "  | " + dadoscarruagem[i][1]);
@@ -897,17 +894,17 @@ public class Projetofinalv {
 					continue;
 				}
 
-				tmpArray[i][0]= dadoscarruagem[j][0];
-				tmpArray[i][1]= dadoscarruagem[j][1];
+				arraytemp[i][0]= dadoscarruagem[j][0];
+				arraytemp[i][1]= dadoscarruagem[j][1];
 				i++;	
 			}
-			dadoscarruagem=tmpArray;
+			dadoscarruagem=arraytemp;
 
 		}
 		private static void removerautomotora() {
 
 			String automotora;
-			String tmpArray[][]= new String[dadosautomotora.length-1][2];
+			String arraytemp[][]= new String[dadosautomotora.length-1][2];
 			System.out.println("ID	 | Tipo de Automotora");
 			for (int i = 0; i<dadosautomotora.length; i++){
 				if(dadosautomotora[i][0].compareToIgnoreCase("0")!=0){
@@ -922,11 +919,11 @@ public class Projetofinalv {
 				if(dadosautomotora[j][0].equalsIgnoreCase(automotora)){
 					continue;
 				}
-				tmpArray[i][0]= dadosautomotora[j][0];
-				tmpArray[i][1]= dadosautomotora[j][1];
+				arraytemp[i][0]= dadosautomotora[j][0];
+				arraytemp[i][1]= dadosautomotora[j][1];
 				i++;	
 			}
-			dadosautomotora=tmpArray;
+			dadosautomotora=arraytemp;
 
 		}
 		private static void alterarautocarru() throws Exception {
@@ -966,7 +963,7 @@ public class Projetofinalv {
 				carruagem=teclado.next();
 				for(int h=0;h<dadoscarruagem.length;h++){
 					if(carruagem.equals(dadoscarruagem[h][0])){
-						System.out.println("Insira o novo nÃºmero de passageiros");
+						System.out.println("Insira o novo número de passageiros");
 						alteracao=teclado.next();
 						for(int j=0;j<dadoscarruagem.length;j++){
 							if(dadoscarruagem[j][0].equalsIgnoreCase(carruagem)){
@@ -1115,7 +1112,7 @@ public class Projetofinalv {
 		}
 		private static void removerautomotoraestaleiro() {
 			String estaleiro;
-			String tmpArray[][]= new String[dadosestaleiroauto.length-1][2];
+			String arraytemp[][]= new String[dadosestaleiroauto.length-1][2];
 
 
 
@@ -1137,11 +1134,11 @@ public class Projetofinalv {
 					continue;
 				}
 
-				tmpArray[i][0]= dadosestaleiroauto[j][0];
-				tmpArray[i][1]= dadosestaleiroauto[j][1];
+				arraytemp[i][0]= dadosestaleiroauto[j][0];
+				arraytemp[i][1]= dadosestaleiroauto[j][1];
 				i++;	
 			}
-			dadosestaleiroauto=tmpArray;
+			dadosestaleiroauto=arraytemp;
 
 			
 		}
@@ -1150,7 +1147,7 @@ public class Projetofinalv {
 
 		private static void removercarruagemestaleiro() {
 			String estaleiro;
-			String tmpArray[][]= new String[dadosestaleirocarr.length-1][2];
+			String arraytemp[][]= new String[dadosestaleirocarr.length-1][2];
 
 
 
@@ -1172,11 +1169,11 @@ public class Projetofinalv {
 					continue;
 				}
 
-				tmpArray[i][0]= dadosestaleirocarr[j][0];
-				tmpArray[i][1]= dadosestaleirocarr[j][1];
+				arraytemp[i][0]= dadosestaleirocarr[j][0];
+				arraytemp[i][1]= dadosestaleirocarr[j][1];
 				i++;	
 			}
-			dadosestaleirocarr=tmpArray;
+			dadosestaleirocarr=arraytemp;
 
 			
 			
@@ -1221,14 +1218,14 @@ public class Projetofinalv {
 		public static void menu5() throws Exception {
 			int escolha;
 			System.out.println("*************************************************");
-			System.out.println("\t\tMenu gerir composiÃ§Ãµes do metro");
+			System.out.println("\t\tMenu gerir composições do metro");
 			System.out.println("*************************************************");
-			System.out.println("1. Criar composiÃ§Ã£o do metro");
+			System.out.println("1. Criar composição do metro");
 			System.out.println("2. Associar automotora/carruage");
-			System.out.println("3. Alterar composiÃ§Ã£o do metro");
-			System.out.println("4. Alterar associaÃ§Ã£o de uma automotora/carruagem");
-			System.out.println("5. Remover composiÃ§Ã£o do metro");
-			System.out.println("6. Remover associaÃ§Ã£o de uma automotora/carruagem");
+			System.out.println("3. Alterar composição do metro");
+			System.out.println("4. Alterar associação de uma automotora/carruagem");
+			System.out.println("5. Remover composição do metro");
+			System.out.println("6. Remover associação de uma automotora/carruagem");
 			System.out.println("7. Voltar ao menu anterior");
 			System.out.println("*************************************************\n");
 			escolha = teclado.nextInt();
@@ -1418,18 +1415,18 @@ public class Projetofinalv {
 		public static void menu6() throws Exception {
 			int escolha;
 			System.out.println("*************************************************");
-			System.out.println("\t\tMenu gerir estaÃ§Ã£o/linha");
+			System.out.println("\t\tMenu gerir estação/linha");
 			System.out.println("*************************************************");
-			System.out.println("1. Criar estaÃ§Ã£o");
-			System.out.println("2. Alterar estaÃ§Ã£o");
-			System.out.println("3. Remover estaÃ§Ã£o");
+			System.out.println("1. Criar estação");
+			System.out.println("2. Alterar estação");
+			System.out.println("3. Remover estação");
 			System.out.println("4. Criar linha");
 			System.out.println("5. Alterar linha");
 			System.out.println("6. Remover linha");
-			System.out.println("7. Associar estaÃ§Ã£o a uma linha");
-			System.out.println("8. Alterar estaÃ§Ã£o de uma linha");
-			System.out.println("9. Remover estaÃ§Ã£o de uma linha");
-			System.out.println("10. Listar estaÃ§Ãµes");
+			System.out.println("7. Associar estação a uma linha");
+			System.out.println("8. Alterar estação de uma linha");
+			System.out.println("9. Remover estação de uma linha");
+			System.out.println("10. Listar estações");
 			System.out.println("11. Listar linhas");
 			System.out.println("12. Voltar ao menu anterior");
 			System.out.println("*************************************************\n");
@@ -1598,7 +1595,7 @@ public class Projetofinalv {
 
 		private static void remolinha() {
 			String linha;
-			String tmpArray[][]= new String[dadoslinhas.length-1][3];
+			String arraytemp[][]= new String[dadoslinhas.length-1][3];
 			System.out.println("ID     | Cor da Linha | Paragens da Linha");
 			for (int i = 0; i<dadoslinhas.length; i++){
 				if(dadoslinhas[i][0].compareToIgnoreCase("0")!=0){
@@ -1613,12 +1610,12 @@ public class Projetofinalv {
 				if(dadoslinhas[j][0].equalsIgnoreCase(linha)){
 					continue;
 				}
-				tmpArray[i][0]=dadoslinhas[j][0];
-				tmpArray[i][1]=dadoslinhas[j][1];
-				tmpArray[i][2]=dadoslinhas[j][2];
+				arraytemp[i][0]=dadoslinhas[j][0];
+				arraytemp[i][1]=dadoslinhas[j][1];
+				arraytemp[i][2]=dadoslinhas[j][2];
 				i++;	
 			}
-			dadoslinhas=tmpArray;
+			dadoslinhas=arraytemp;
 
 		}
 		private static void altelinha() {
@@ -1657,26 +1654,26 @@ public class Projetofinalv {
 			int numero=1;
 			do{
 
-				String tmpArray[][] = new String[dadoslinhas.length+1][3];
+				String arraytemp[][] = new String[dadoslinhas.length+1][3];
 
 
 				for(int i=0; i<dadoslinhas.length;i++) 
 				{
-					tmpArray[i][0]=dadoslinhas[i][0];
-					tmpArray[i][1]=dadoslinhas[i][1];
+					arraytemp[i][0]=dadoslinhas[i][0];
+					arraytemp[i][1]=dadoslinhas[i][1];
 				}
 
 				System.out.println("Insira o ID da linha");
 
 
-				tmpArray[tmpArray.length-1][0]= teclado.next();
+				arraytemp[arraytemp.length-1][0]= teclado.next();
 
 				System.out.println("Insira a cor da linha");
 
 
-				tmpArray[tmpArray.length-1][1]= teclado.next();
+				arraytemp[arraytemp.length-1][1]= teclado.next();
 
-				dadoslinhas=tmpArray;
+				dadoslinhas=arraytemp;
 
 				do{
 					System.out.println("Prima 1 para inserir uma nova carruagem ou 0 para voltar.");
@@ -1693,14 +1690,14 @@ public class Projetofinalv {
 		}
 		private static void remoestacao() {
 			String estacao;
-			String tmpArray[][]= new String[dadosestacoes.length-1][3];
-			System.out.println("ID     | Nome da EstaÃ§Ã£o | LocalizaÃ§Ã£o da EstaÃ§Ã£o");
+			String arraytemp[][]= new String[dadosestacoes.length-1][3];
+			System.out.println("ID     | Nome da Estação | Localização da Estação");
 			for (int i = 0; i<dadosestacoes.length; i++){
 				if(dadosestacoes[i][0].compareToIgnoreCase("0")!=0){
 					System.out.println(dadosestacoes[i][0]+ "  | " + dadosestacoes[i][1]+ "  | " + dadosestacoes[i][2]);
 				}
 			}
-			System.out.println("Insira o ID da estaÃ§Ã£o que pretende remover");
+			System.out.println("Insira o ID da estação que pretende remover");
 			estacao=teclado.next();
 			int i=0;
 			for(int j=0;j<dadosestacoes.length;j++){
@@ -1708,12 +1705,12 @@ public class Projetofinalv {
 				if(dadosestacoes[j][0].equalsIgnoreCase(estacao)){
 					continue;
 				}
-				tmpArray[i][0]= dadosestacoes[j][0];
-				tmpArray[i][1]=dadosestacoes[j][1];
-				tmpArray[i][2]=dadosestacoes[j][2];
+				arraytemp[i][0]= dadosestacoes[j][0];
+				arraytemp[i][1]=dadosestacoes[j][1];
+				arraytemp[i][2]=dadosestacoes[j][2];
 				i++;	
 			}
-			dadosestacoes=tmpArray;
+			dadosestacoes=arraytemp;
 
 		}
 		private static void alteestacao() {
@@ -1722,18 +1719,18 @@ public class Projetofinalv {
 			String alteracao2;
 			
 				
-				System.out.println("ID     | Nome da EstaÃ§Ã£o | LocalizaÃ§Ã£o da EstaÃ§Ã£o");
+				System.out.println("ID     | Nome da Estação | Localização da Estação");
 				for (int i = 0; i<dadosestacoes.length; i++){
 					if(dadosestacoes[i][0].compareToIgnoreCase("0")!=0)
 						System.out.println(dadosestacoes[i][0]+ "  | " + dadosestacoes[i][1]+ "  | " + dadosestacoes[i][2]);
 				}	
-				System.out.println("Insira o ID da estaÃ§Ã£o que pretende alterar");
+				System.out.println("Insira o ID da estação que pretende alterar");
 				estacao=teclado.next();
 				for(int h=0;h<dadosestacoes.length;h++){
 					if(estacao.equals(dadosestacoes[h][0])){
-						System.out.println("Insira o novo nome da estaÃ§Ã£o");
+						System.out.println("Insira o novo nome da estação");
 						alteracao=teclado.next();
-						System.out.println("Insira a nova localizaÃ§Ã£o da estaÃ§Ã£o");
+						System.out.println("Insira a nova localização da estação");
 						alteracao2=teclado.next();
 						for(int j=0;j<dadosestacoes.length;j++){
 							if(dadosestacoes[j][0].equalsIgnoreCase(estacao)){
@@ -1752,27 +1749,27 @@ public class Projetofinalv {
 			int numero=1;
 			do{
 
-				String tmpArray[][] = new String[dadosestacoes.length+1][3];
+				String arraytemp[][] = new String[dadosestacoes.length+1][3];
 
 
 				for(int i=0; i<dadosestacoes.length;i++) 
 				{
-					tmpArray[i][0]=dadosestacoes[i][0];
-					tmpArray[i][1]=dadosestacoes[i][1];
+					arraytemp[i][0]=dadosestacoes[i][0];
+					arraytemp[i][1]=dadosestacoes[i][1];
 				}
 
-				System.out.println("Insira o ID da EstaÃ§Ã£o");
+				System.out.println("Insira o ID da Estação");
 
 
-				tmpArray[tmpArray.length-1][0]= teclado.next();
+				arraytemp[arraytemp.length-1][0]= teclado.next();
 
-				System.out.println("Insira o nome da EstaÃ§Ã£o");
+				System.out.println("Insira o nome da Estação");
 
 
-				tmpArray[tmpArray.length-1][1]= teclado.next();
+				arraytemp[arraytemp.length-1][1]= teclado.next();
 				
 
-				dadosestacoes=tmpArray;
+				dadosestacoes=arraytemp;
 
 				do{
 					System.out.println("Prima 1 para inserir uma nova carruagem ou 0 para voltar.");
@@ -1792,8 +1789,8 @@ public class Projetofinalv {
 			System.out.println("*************************************************");
 			System.out.println("\t\tMenu gerir movimentos");
 			System.out.println("*************************************************");
-			System.out.println("1. Colocar composiÃ§Ã£o do metro em circulaÃ§Ã£o");
-			System.out.println("2. Remover composiÃ§Ã£o do metro de circulaÃ§Ã£o");
+			System.out.println("1. Colocar composiÃ§Ã£o do metro em circulação");
+			System.out.println("2. Remover composiÃ§Ã£o do metro de circulação");
 			System.out.println("3. Listar movimentos");
 			System.out.println("4. Voltar ao menu anterior");
 			System.out.println("*************************************************\n");
@@ -1828,10 +1825,10 @@ public class Projetofinalv {
 			System.out.println("\t\tMenu estatÃ­stica");
 			System.out.println("*************************************************");
 			System.out.println("1. Listar total de automotoras/carruagens");
-			System.out.println("2. Listar total de automotoras/carruagens em circulaÃ§Ã£o");
+			System.out.println("2. Listar total de automotoras/carruagens em circulação");
 			System.out.println("3. Listar total de automotoras/carruagens paradas");
-			System.out.println("4. Listar composiÃ§Ãµes estacionados com justificaÃ§Ã£o");
-			System.out.println("5. Listar total de lugares disponÃ­veis");
+			System.out.println("4. Listar composições estacionados com justificação");
+			System.out.println("5. Listar total de lugares disponíveis");
 			System.out.println("6. Outras");
 			System.out.println("7. Voltar ao menu anterior");
 			System.out.println("*************************************************\n");
