@@ -1,8 +1,8 @@
 
-import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 public class Projetofinalv {
@@ -11,9 +11,9 @@ public class Projetofinalv {
 	static File ficheiro;
 	static String dadosautomotora[][]=new String[0][2];
 	static String dadoscarruagem[][]= new String[0][2];	
-	static String dadoscomposicoes[][]=new String[0][10];
+	static String dadoscomposicoes[][]=new String[0][3];
+	static String dadoslinhas[][]=new String[0][3];
 	static String dadosestacoes[][]=new String[0][3];
-	static String dadoslinhas[][]=new String[0][4];
 	static String dadosestaleirocarr[][]=new String[0][2];
 	static String dadosestaleiroauto[][]=new String[0][2];
 	static String NomeFicheiro_carruagem = "carruagens.txt";
@@ -30,7 +30,7 @@ public class Projetofinalv {
 //Inicialização dos dados a partir do ficheiro
 		dadoscarruagem=lerFicheirocarruagem();
 		dadosautomotora=lerFicheiroautomotora();
-		dadosestacoes=lerFicheiroestacoes();
+		dadoscomposicoes=lerFicheiroestacoes();
 		dadoslinhas=lerFicheirolinhas();
 		dadosestaleirocarr=lerFicheiroestaleirocarr();
 		dadosestaleiroauto=lerFicheiroestaleiroauto();
@@ -55,6 +55,28 @@ public class Projetofinalv {
 
 			menuprincipal();
 		}while (escolha !=8) ;
+	}
+	public static void carregararray(String nomeficheiro, String[][] nomearray)
+	{
+		try {
+			BufferedWriter buffer = new BufferedWriter(new FileWriter(nomeficheiro));
+			
+			for(int i=0; i<nomearray.length; i++)
+			{
+				for(int y=0; y<nomearray[0].length; y++)
+				{
+					buffer.write(nomearray[i][y]+";");
+				}
+				buffer.newLine();
+			}
+			buffer.close();
+		} catch(FileNotFoundException e) {
+			System.out.println("Ficheiro não encontrado!");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Erro na aplicação!");
+			e.printStackTrace();
+		}
 	}
 
 	
@@ -254,24 +276,18 @@ public class Projetofinalv {
 
 		sc1 = new Scanner(file);
 
-		dadoscomposicoes = new String[numLinhas][10];
-
+		dadoscomposicoes = new String[numLinhas][4];
 
 		for(int i=0; sc1.hasNextLine(); i++)
 		{
-			
 			String line = sc1.nextLine();
-			String tempArray[]= line.split(";") ;
-		for(int j=0; j< dadoscomposicoes.length;j++) {	
+			dadoscomposicoes[i][0] = String.valueOf((line.split(";")[0]));
+			dadoscomposicoes[i][1] = String.valueOf((line.split(";")[1]));
+			dadoscomposicoes[i][2] = String.valueOf((line.split(";")[2]));
 			
-			if(j<tempArray.length)
-				dadoscomposicoes[i][j] = String.valueOf((line.split(";")[0]));
-			else
-				dadoscomposicoes[i][j] = "";
 			
+
 		}
-		}
-		sc1.close();
 	} catch (FileNotFoundException e) {
 		System.out.println("Ocorreu um erro durante a leitura do ficheiro! [DEBUG: "+e.getMessage()+"]");
 	}
@@ -698,7 +714,7 @@ public class Projetofinalv {
 
 			for(int i=0; i<sizeofcomposicoes; i++){
 
-				System.out.println(dadoscomposicoes[i][i]);
+				System.out.println(dadoscomposicoes[i][0]+"|"+dadoscomposicoes[i][1]+"|"+dadoscomposicoes[i][2]);
 			}
 
 		}
@@ -781,7 +797,7 @@ public class Projetofinalv {
 				arraytemp[arraytemp.length-1][1]= teclado.next();
 
 				dadoscarruagem=arraytemp;
-				arraytemp=dadosestaleirocarr;
+				dadosestaleirocarr=arraytemp;
 				
 				
 				
@@ -795,9 +811,10 @@ public class Projetofinalv {
 					}
 
 				}while(numero==2);
-
+				
 			}while(numero!=0);
-
+			carregararray(NomeFicheiro_carruagem,dadoscarruagem);
+			carregararray(NomeFicheiro_estaleirocarr,dadosestaleirocarr);
 		}
 
 
@@ -827,7 +844,7 @@ public class Projetofinalv {
 
 
 				dadosautomotora=arraytemp;
-				arraytemp=dadosestaleiroauto;
+				dadosestaleiroauto=arraytemp;
 
 				do{
 					System.out.println("Prima 1 para inserir uma nova automotora ou 0 para voltar.");
@@ -840,7 +857,8 @@ public class Projetofinalv {
 				}while(numero==2);
 
 			}while(numero!=0);
-
+			carregararray(NomeFicheiro_automotora,dadosautomotora);
+			carregararray(NomeFicheiro_estaleiroauto,dadosestaleiroauto);
 		}
 
 
@@ -901,6 +919,7 @@ public class Projetofinalv {
 				i++;	
 			}
 			dadoscarruagem=arraytemp;
+			carregararray(NomeFicheiro_carruagem,dadoscarruagem);
 
 		}
 		private static void removerautomotora() {
@@ -926,6 +945,7 @@ public class Projetofinalv {
 				i++;	
 			}
 			dadosautomotora=arraytemp;
+			carregararray(NomeFicheiro_automotora,dadosautomotora);
 
 		}
 		private static void alterarautocarru() throws Exception {
@@ -975,12 +995,12 @@ public class Projetofinalv {
 						}
 					}
 				}
+				carregararray(NomeFicheiro_carruagem,dadoscarruagem);
 		}
 		private static void alterarautomotora() {
 			String automotora;
 			String alteracao;
-			boolean correto=false;
-			do{
+		
 				System.out.println("Insira o ID da automotora que pretende alterar");
 				System.out.println("ID     | Tipo de Automotora");
 				for (int i = 0; i<dadosautomotora.length; i++){
@@ -990,7 +1010,6 @@ public class Projetofinalv {
 				automotora=teclado.next();
 				for(int h=0;h<dadosautomotora.length;h++){
 					if(automotora.equals(dadosautomotora[h][0])){
-						correto=true;
 						System.out.println("Insira o novo tipo");
 						alteracao=teclado.next();
 						for(int j=0;j<dadosautomotora.length;j++){
@@ -999,11 +1018,9 @@ public class Projetofinalv {
 
 							}
 						}
-					}else{
-						correto=false;
 					}
 				}
-			}while(correto==false);
+				carregararray(NomeFicheiro_automotora,dadosautomotora);	
 		}
 
 
@@ -1141,7 +1158,7 @@ public class Projetofinalv {
 				i++;	
 			}
 			dadosestaleiroauto=arraytemp;
-
+			carregararray(NomeFicheiro_estaleiroauto,dadosestaleiroauto);
 			
 		}
 
@@ -1178,7 +1195,7 @@ public class Projetofinalv {
 			dadosestaleirocarr=arraytemp;
 
 			
-			
+			carregararray(NomeFicheiro_estaleirocarr,dadosestaleirocarr);
 		}
 
 
@@ -1212,6 +1229,7 @@ public class Projetofinalv {
 
 
 		private static void inserirautomotoraestaleiro() {
+			
 			
 		}
 		
@@ -1256,135 +1274,104 @@ public class Projetofinalv {
 				}
 		}
 		private static void remoassoautocarru() {
-			//@TODO Fazer
+			
 		}
 		private static void remocompmetro() {
-			//@TODO Fazer
+			String composicao;
+			String arraytemp[][]= new String[dadoscomposicoes.length-1][3];
+			System.out.println("ID  | Automotora | Carruagem");
+			for (int i = 0; i<dadoscomposicoes.length; i++){
+				if(dadoscomposicoes[i][0].compareToIgnoreCase("0")!=0){
+					System.out.println(dadoscomposicoes[i][0]+ "  | " + dadoscomposicoes[i][1]+ "  | " + dadoscomposicoes[i][2]);
+				}
+			}
+			System.out.println("Insira o ID da composição que pretende remover");
+			composicao=teclado.next();
+			int i=0;
+			for(int j=0;j<dadoscomposicoes.length;j++){
+
+				if(dadoscomposicoes[j][0].equalsIgnoreCase(composicao)){
+					continue;
+				}
+				arraytemp[i][0]=dadoscomposicoes[j][0];
+				arraytemp[i][1]=dadoscomposicoes[j][1];
+				arraytemp[i][2]=dadoscomposicoes[j][2];
+				i++;	
+			}
+			dadoscomposicoes=arraytemp;
+			carregararray(NomeFicheiro_composicoes,dadoscomposicoes);
+
 		}
+		
 		private static void alteassoautocarru() {
-			//@TODO Fazer
+			
 			
 		}
 		private static void altecompmetro() {
+			String composicao;
+			String alteracao;
+			String alteracao2;
 			
+				
+				System.out.println("ID  | Automotora | Carruagem");
+				for (int i = 0; i<dadoscomposicoes.length; i++){
+					if(dadoscomposicoes[i][0].compareToIgnoreCase("0")!=0)
+						System.out.println(dadoscomposicoes[i][0]+ "  | " + dadoscomposicoes[i][1]+ "  | " + dadoscomposicoes[i][2]);
+				}	
+				System.out.println("Insira o ID da composiçao que pretende alterar");
+				composicao=teclado.next();
+				for(int h=0;h<dadoscomposicoes.length;h++){
+					if(composicao.equals(dadoscomposicoes[h][0])){
+						System.out.println("Insira uma nova automotora a composição");
+						alteracao=teclado.next();
+						System.out.println("Insira uma nova carruagem a composição");
+						alteracao2=teclado.next();
+						for(int j=0;j<dadoscomposicoes.length;j++){
+							if(dadoscomposicoes[j][0].equalsIgnoreCase(composicao)){
+								dadoscomposicoes[j][1]=alteracao;
+								dadoscomposicoes[j][2]=alteracao2;
+
+							
+						}
+					}
+				}
+					
+					
+				}
 			
+				carregararray(NomeFicheiro_composicoes,dadoscomposicoes);
 		}
 		private static void associarautocarru() {
 			
-			String arraytemp[][] = new String[dadoscomposicoes.length+1][10];
+			String arraytemp[][] = new String[dadoscomposicoes.length+1][4];
 			for(int i=0; i<dadoscomposicoes.length; i++) 
 			{
-				System.out.println(dadoscomposicoes[i][0] +":"+ dadoscomposicoes[i][1]);
+				System.out.println(dadoscomposicoes[i][0]);
 			}
 			
 			System.out.println("Insira a Composição");
+			arraytemp[arraytemp.length-1][0]= teclado.next();
+			
+			System.out.println("Insira apenas uma Automotora");
+
 			arraytemp[arraytemp.length-1][1]= teclado.next();
-			for(int i=0; i<dadoscomposicoes.length;i++) 
-			{
-				if(dadoscomposicoes[i][0].equalsIgnoreCase(arraytemp[arraytemp.length-1][0])) 
-				{
-					arraytemp[arraytemp.length-1][0]= dadoscomposicoes[i][0];
-					
-				}
-				else {
-					System.out.println("Nao existe composicoa");
-				}
-			}
-			for(int i=0; i<dadosestaleiroauto.length; i++) 
-			{
-				System.out.println(dadosestaleiroauto[i][0] +":"+ dadosestaleiroauto[i][1]);
-			}
 			
-			System.out.println("Insira a Automotora");
-
+			System.out.println("Insira apenas uma Carruagem");
+			
+			
 			arraytemp[arraytemp.length-1][2]= teclado.next();
-			for(int i=0; i<dadosestaleiroauto[i].length;i++) 
-			{
-				if(dadosestaleiroauto[i][0].equalsIgnoreCase(arraytemp[arraytemp.length-1][1])) 
-				{
-					arraytemp[arraytemp.length-1][2]= dadosestaleiroauto[i][0];
-					
-				}
-				else {
-					System.out.println("Nao existe automotora");
-				}
-			}
-			int numero=1;
-			do {
-			for(int j=0; j<dadosestaleirocarr.length; j++) 
-			{
-				System.out.println(dadosestaleirocarr[j][0] +":"+ dadosestaleirocarr[j][1]);
-			}
 			
-			System.out.println("Insira a carruagem");
-
-			int indice = encontraIndiceVazio(arraytemp.length-1);
-			
-			
-			arraytemp[arraytemp.length-1][indice]= teclado.next();
-			
-	
-			
-			for(int i=0; i<dadosestaleirocarr[i].length;i++) 
-			{
-				if(dadosestaleirocarr[i][0].equalsIgnoreCase(arraytemp[arraytemp.length-1][1])) 
-				{
-					arraytemp[arraytemp.length-1][2]= dadosestaleirocarr[i][0];
-					
-				}
-				else {
-					System.out.println("Nao existe carruagem");
-				}
-			}
-			do{
-				System.out.println("Prima 1 para inserir uma nova carruagem/automotora ou 0 para voltar.");
-				numero=teclado.nextInt();
-				if(numero!=0&&numero!=1){
-					System.out.println("Apenas pode inserir 0 ou 1");
-					numero=2;
-				}
-
-			}while(numero==2);
-			}while(numero!=0);
 			dadoscomposicoes=arraytemp;
+			carregararray(NomeFicheiro_composicoes,dadoscomposicoes);
 			
 		}
 		
-		private static String[][] reduzirArray(String id, int columns)
-		{
-			
-			if(dadosestaleirocarr.length == 0)
-				return new String [1][columns];
-			
-			String[][] temp = new String[dadosestaleirocarr.length-1][columns];
-			
-			for(int i=0; i<dadosestaleirocarr.length; i++) {
-				for(int j=0; j< columns; j++) {
-					if(dadosestaleirocarr[i][0].equalsIgnoreCase(id)){
-						continue;
-					}
-					temp[i][j] = dadosestaleirocarr[i][j];
-					
-				}
-				
-			}
-			return temp;
-		}
-		private static int encontraIndiceVazio(int linha) {
-			
-			for(int i=0; i < dadoscomposicoes[0].length;i++)
-			{
-				if(dadoscomposicoes[linha][i] == "")
-					return i;
-			}
-			
-			return -1;
-		}
+
 
 		private static void criarcompmetro() {
 			
 
-				String arraytemp[][] = new String[dadoscomposicoes.length+1][10];
+				String arraytemp[][] = new String[dadoscomposicoes.length+1][3];
 
 				for(int i=0; i < dadoscomposicoes.length ;i++) 
 				{
@@ -1396,20 +1383,13 @@ public class Projetofinalv {
 
 				arraytemp[arraytemp.length-1][0]= teclado.next();
 				
-				System.out.println("\n Menu Estado");
-				System.out.println("1-Em circulação");
-				System.out.println("2-Revisão");
-				System.out.println("3-Reparação");
-				System.out.println("4-Paragem de fim-de-semana");
-				arraytemp[arraytemp.length-1][1]= teclado.next();
-				
 				
 				dadoscomposicoes=arraytemp;
 				
 			
 
 				
-			
+				carregararray(NomeFicheiro_composicoes,dadoscomposicoes);
 		
 		}
 		
@@ -1488,44 +1468,17 @@ public class Projetofinalv {
 
 		private static void listarestacoes() throws Exception  {
 
-			int sizeofestacoes = dadosestacoes.length;
+			int sizeofestacoes = dadoscomposicoes.length;
 
 
 			for(int i=0; i<sizeofestacoes; i++){
 
-				System.out.println(dadosestacoes[i][0] +" | "+dadosestacoes[i][1]+" | "+dadosestacoes[i][2]);
+				System.out.println(dadoscomposicoes[i][0] +" | "+dadoscomposicoes[i][1]+" | "+dadoscomposicoes[i][2]);
 			}
 		}
 
 		private static void remoestacaolinha() {
-			
-			String linha;
-			String estacao;
-			String arraytemp[][]= new String[dadoslinhas.length-1][3];
-			
-			
-			System.out.println("ID | Cor da Linha | Estação");
-			for (int i = 0; i<dadoslinhas.length; i++){
-				if(dadoslinhas[i][0].compareToIgnoreCase("0")!=0){
-					System.out.println(dadoslinhas[i][0]+"|"+dadoslinhas[i][1]+"|"+dadoslinhas[i][2]);
-				}
-			}
-			System.out.println("Insira o ID da linha");
-			linha=teclado.next();
-			System.out.println("Qual a estação que pretende remover");
-				estacao= teclado.next();
-				int i=0;
-				for(int j=0;j<dadoslinhas.length;j++){
-				if(dadoslinhas[j][2].equalsIgnoreCase(estacao)){
-					dadoslinhas[j][0]=linha;
-		            arraytemp[i][0]= dadoslinhas[j][0];
-		            arraytemp[i][1]= dadoslinhas[j][1];
-		            i++;
-				}
-				
-			}
-				
-	
+		
 		}
 
 
@@ -1562,7 +1515,7 @@ public class Projetofinalv {
 						}
 					}
 				}
-			
+				carregararray(NomeFicheiro_linhas,dadoslinhas);
 		}
 		private static void assoestacaolinha() {
 			  System.out.println("ID     | Cor da Linha");
@@ -1572,9 +1525,9 @@ public class Projetofinalv {
 		            }
 		        }
 		        System.out.println("\nEstações");
-		        for(int i=0; i<dadosestacoes.length; i++)
+		        for(int i=0; i<dadoscomposicoes.length; i++)
 		        {
-		            System.out.println(dadosestacoes[i][0]);
+		            System.out.println(dadoscomposicoes[i][0]);
 		        }
 
 		        System.out.println("\nQual a estação que prentende adicionar");
@@ -1593,7 +1546,7 @@ public class Projetofinalv {
 		        }
 
 
-
+		        carregararray(NomeFicheiro_linhas,dadoslinhas);
 		}
 
 		private static void remolinha() {
@@ -1619,7 +1572,7 @@ public class Projetofinalv {
 				i++;	
 			}
 			dadoslinhas=arraytemp;
-
+			carregararray(NomeFicheiro_linhas,dadoslinhas);
 		}
 		private static void altelinha() {
 			String linha;
@@ -1652,6 +1605,7 @@ public class Projetofinalv {
 						}
 					}
 				}
+				carregararray(NomeFicheiro_linhas,dadoslinhas);
 		}
 		private static void criarlinha() {
 			int numero=1;
@@ -1689,7 +1643,7 @@ public class Projetofinalv {
 				}while(numero==2);
 
 			}while(numero!=0);
-
+			carregararray(NomeFicheiro_linhas,dadoslinhas);
 		}
 		private static void remoestacao() {
 			String estacao;
@@ -1714,7 +1668,7 @@ public class Projetofinalv {
 				i++;	
 			}
 			dadosestacoes=arraytemp;
-
+			carregararray(NomeFicheiro_estacoes,dadosestacoes);
 		}
 		private static void alteestacao() {
 			String estacao;
@@ -1746,6 +1700,7 @@ public class Projetofinalv {
 				}
 					
 				}
+				carregararray(NomeFicheiro_estacoes,dadosestacoes);
 
 		}
 		private static void criarestacao() {
@@ -1785,6 +1740,7 @@ public class Projetofinalv {
 				}while(numero==2);
 
 			}while(numero!=0);
+			carregararray(NomeFicheiro_estacoes,dadosestacoes);
 
 		}
 		public static void menu7() throws Exception {
@@ -1814,13 +1770,13 @@ public class Projetofinalv {
 				}
 		}
 		private static void listarmovimentos() {
-			//@TODO Fazer
+			
 		}
 		private static void removercomposicao() {
-			//@TODO Fazer
+			
 		}
 		private static void colocarcomposicao() {
-			//@TODO Fazer
+		
 		}
 		public static void menu8() throws Exception {
 			int escolha;
